@@ -47,12 +47,7 @@
 		echo "Something wrong"; 
 	 }
 	 
- }
-	 
-	 
-	         
-        
-
+      } 
 	 mysqli_close($con);	
 	 
 	 
