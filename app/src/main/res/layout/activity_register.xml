@@ -20,7 +20,7 @@
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:inputType="textPersonName"
-        android:text="name" />
+        android:hint="name" />
 
     <EditText
         android:id="@+id/IdAddress"
@@ -30,7 +30,7 @@
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:inputType="textPersonName"
-        android:text="Address" />
+        android:hint="Address" />
 
     <EditText
         android:id="@+id/IdCity"
@@ -40,7 +40,7 @@
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:inputType="textPersonName"
-        android:text="city" />
+        android:hint="city" />
 
     <EditText
         android:id="@+id/IdCountry"
@@ -50,7 +50,7 @@
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:inputType="textPersonName"
-        android:text="Country" />
+        android:hint="Country" />
 
     <EditText
         android:id="@+id/IdEmail"
@@ -60,7 +60,7 @@
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:inputType="textEmailAddress"
-        android:text="Email" />
+        android:hint="Email" />
 
     <EditText
         android:id="@+id/IdPass"
@@ -70,7 +70,7 @@
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:inputType="textPassword"
-        android:text="Password" />
+        android:hint="Password" />
 
     <EditText
         android:id="@+id/IdZip"
@@ -80,7 +80,7 @@
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:inputType="textPersonName"
-        android:text="Zip" />
+        android:hint="Zip" />
 
     <EditText
         android:id="@+id/IdPhone"
@@ -90,7 +90,7 @@
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:inputType="textPersonName"
-        android:text="Phone" />
+        android:hint="Phone" />
 
     <Button
         android:onClick="button"
@@ -99,6 +99,6 @@
         android:layout_height="wrap_content"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:text="Button" />
+        android:hint="Button" />
 
 </LinearLayout>
