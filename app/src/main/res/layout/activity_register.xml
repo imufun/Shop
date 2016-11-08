@@ -93,6 +93,7 @@
         android:text="Phone" />
 
     <Button
+        android:onClick="button"
         android:id="@+id/btnInsert"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
