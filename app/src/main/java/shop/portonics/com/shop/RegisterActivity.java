@@ -75,8 +75,7 @@ public class RegisterActivity extends AppCompatActivity {
                             @Override
                             public void onResponse(String response) {
 
-
-                               // builder.setTitle("SERVER RESPONSE");
+                                // builder.setTitle("SERVER RESPONSE");
                                 builder.setMessage("Response :" + response);
                                 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                     @Override
@@ -98,8 +97,9 @@ public class RegisterActivity extends AppCompatActivity {
                         }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(RegisterActivity.this, "Error.....", Toast.LENGTH_LONG).show();
+                        Toast.makeText(RegisterActivity.this, "Error Network Connection", Toast.LENGTH_LONG).show();
                         error.printStackTrace();
+                        // builder.setMessage("No Network Connection!");
                     }
                 }) {
                     @Override

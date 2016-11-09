@@ -99,6 +99,8 @@
         android:layout_height="wrap_content"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:hint="Button" />
+        android:hint="Button"
+        android:background="@android:color/holo_blue_dark"
+        android:textColor="#fff" />
 
 </LinearLayout>
