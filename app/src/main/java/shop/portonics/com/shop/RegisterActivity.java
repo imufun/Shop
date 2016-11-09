@@ -18,6 +18,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import com.crashlytics.android.Crashlytics;
+import io.fabric.sdk.android.Fabric;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,12 +33,13 @@ public class RegisterActivity extends AppCompatActivity {
     public String Name, Address, city, Country, Email, Pass, Zip, Phone;
     Button button;
     RequestQueue requestQueue;
-    private static String URL_REGISTER = "http://localhost:8080/apidone/DbAdapter.php";
+    private static String URL_REGISTER = "http://169.254.194.175:8080/apidone/DbAdapter.php";
     AlertDialog.Builder builder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_register);
         AppAPIs appAPIs = new AppAPIs();
 
