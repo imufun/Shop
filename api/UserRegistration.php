@@ -25,17 +25,10 @@
 	 $pass_md5 =md5($password);
 	 
 	 
-	  if (	empty($name) || 
-			empty($address)|| 
-			empty($city) || 
-			empty($country) || 
-			empty($email)||
-			empty($password) || 
-			empty($zip) ||
-			empty($phone)){
+	  if (	empty($name) || empty($address)|| empty($city) || empty($country) || empty($email)|| empty($password) || empty($zip) || empty($phone)){
 				
 			echo "Field must not be empty";
- }else{
+    }else{
 	 
 	 //$query = "INSERT INTO tbl_customer(name, address,city, country, email,password, zip, phone) VALUES ("$name", "$address", "$city", "$country", "$email", "$password", "$zip", "$phone")";
 	 $query = "INSERT INTO tbl_customer (name,address,city,country,email,password,zip,phone)values('$name','$address','$city','$country',' $email','$pass_md5','$zip','$phone')";
@@ -49,8 +42,7 @@
 	 
       } 
 	 mysqli_close($con);	
-	 
-	 
+	  
  }
    
 
