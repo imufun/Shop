@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Shop</string>
     <string name="create_account">Create an Account</string>
+    <string name="google_api">AIzaSyDVFARgENwZiKArdQqtqKbwOohxuJf7R7A</string>
+
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
 </resources>

@@ -17,16 +17,16 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
 import com.crashlytics.android.Crashlytics;
+import io.fabric.sdk.android.Fabric;
+import shop.portonics.com.shop.BackgroundTask;
+import shop.portonics.com.shop.R;
+import shop.portonics.com.shop.utils.AppAPIs;
+import shop.portonics.com.shop.utils.AppController;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import io.fabric.sdk.android.Fabric;
-import shop.portonics.com.shop.utils.AppAPIs;
-import shop.portonics.com.shop.utils.AppController;
-import shop.portonics.com.shop.BackgroundTask;
-import shop.portonics.com.shop.R;
 
 import static shop.portonics.com.shop.R.id.IdName;
 import static shop.portonics.com.shop.R.id.btnInsert;
@@ -38,7 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
     public String Name, Address, city, Country, Email, Pass, Zip, Phone;
     Button button;
     RequestQueue requestQueue;
-    private static String URL_REGISTER = "http://localhost:8080/apidone/UserRegistration.php";
+    private static String URL_REGISTER = "http://169.254.194.175:8080/apidone/UserRegistration.php";
     AlertDialog.Builder builder;
 
     @Override
@@ -48,6 +48,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         AppAPIs appAPIs = new AppAPIs();
 
+//        getActionBar().setDisplayHomeAsUpEnabled(true);
 
         mName = (EditText) findViewById(IdName);
         mAddress = (EditText) findViewById(R.id.IdAddress);

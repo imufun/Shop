@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/home"
+            android:icon="@drawable/ic_home"
+            android:title="Home" />
+        <item
+            android:id="@+id/settings"
+            android:icon="@drawable/cast_abc_scrubber_control_off_mtrl_alpha"
+            android:title="Settings" />
+        <item
+            android:id="@+id/trash"
+            android:icon="@drawable/cast_abc_scrubber_primary_mtrl_alpha"
+            android:title="Trash" />
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/quantum_ic_volume_off_white_36"
+            android:title="Logout" />
+    </group>
+</menu>
