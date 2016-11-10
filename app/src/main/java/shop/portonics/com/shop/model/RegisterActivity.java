@@ -1,4 +1,4 @@
-package shop.portonics.com.shop;
+package shop.portonics.com.shop.model;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -20,6 +20,11 @@ import com.android.volley.toolbox.Volley;
 
 import com.crashlytics.android.Crashlytics;
 import io.fabric.sdk.android.Fabric;
+import shop.portonics.com.shop.BackgroundTask;
+import shop.portonics.com.shop.R;
+import shop.portonics.com.shop.utils.AppAPIs;
+import shop.portonics.com.shop.utils.AppController;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,6 +48,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         AppAPIs appAPIs = new AppAPIs();
 
+//        getActionBar().setDisplayHomeAsUpEnabled(true);
 
         mName = (EditText) findViewById(IdName);
         mAddress = (EditText) findViewById(R.id.IdAddress);
