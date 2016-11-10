@@ -1,4 +1,4 @@
-package shop.portonics.com.shop;
+package shop.portonics.com.shop.utils;
 
 /**
  * Created by imran on 11/8/2016.
