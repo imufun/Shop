@@ -55,7 +55,7 @@ public class UserLogin extends AppCompatActivity {
 
 
         RegisterACtivity();
-        
+
         UserLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
