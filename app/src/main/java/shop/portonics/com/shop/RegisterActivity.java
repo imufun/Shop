@@ -33,7 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
     public String Name, Address, city, Country, Email, Pass, Zip, Phone;
     Button button;
     RequestQueue requestQueue;
-    private static String URL_REGISTER = "http://169.254.194.175:8080/apidone/DbAdapter.php";
+    private static String URL_REGISTER = "http://169.254.194.175:8080/apidone/UserRegistration.php";
     AlertDialog.Builder builder;
 
     @Override
