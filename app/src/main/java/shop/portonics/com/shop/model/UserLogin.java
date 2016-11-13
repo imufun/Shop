@@ -20,12 +20,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.FacebookSdk;
-import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,65 +36,36 @@ public class UserLogin extends AppCompatActivity {
 
     EditText email, password;
     Button UserLogin;
-    LoginButton loginButton;
     String mMail, mPassword;
     TextView mRegisterActivity;
     AlertDialog.Builder mBuilder;
     RequestQueue mRequestQueue;
     private String Login_url = "http://localhost:8080/AndroidApi/UserLogin.php";
 
-    CallbackManager mCallbackManager;
-
-
     Register mRegister;
     RegisterActivity registerActivity;
     private TextView mStatusTextView;
     private ProgressDialog mProgressDialog;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FacebookSdk.sdkInitialize(this.getApplicationContext());
-        mCallbackManager = CallbackManager.Factory.create();
         setContentView(R.layout.activity_user_login);
-
-
-        //    AppEventsLogger.activateApp(this);
-
 
         mBuilder = new AlertDialog.Builder(this);
         mRegister = new Register();
 
         email = (EditText) findViewById(R.id.UserEmail);
         password = (EditText) findViewById(R.id.UserPass);
-        loginButton = (LoginButton) findViewById(R.id.fb_login_btn);
+
         UserLogin = (Button) findViewById(R.id.btnLogn);
         mRegisterActivity = (TextView) findViewById(R.id.mRegisterActivity);
 
         mRequestQueue = Volley.newRequestQueue(this);
 
-
         UserLogin userLogin = new UserLogin();
 
         userLogin.RegisterACtivity();
 
-        loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                final TextView textView = null;
-                textView.setText("Login Success" + loginResult.getAccessToken().getUserId() + "\n" + loginResult.getAccessToken().getToken());
-            }
-
-            @Override
-            public void onCancel() {
-
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-
-            }
-        });
 
 
         mRegisterActivity.setOnClickListener(new View.OnClickListener() {
@@ -197,9 +162,6 @@ public class UserLogin extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        mCallbackManager.onActivityResult(requestCode, resultCode, data);
-    }
+
+
 }

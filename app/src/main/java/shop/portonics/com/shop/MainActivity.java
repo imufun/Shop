@@ -42,13 +42,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void logUser() {
-        // TODO: Use the current user's information
-        // You can call any combination of these three methods
-        Crashlytics.setUserIdentifier("12345");
-        Crashlytics.setUserEmail("user@fabric.io");
-        Crashlytics.setUserName("Test User");
-    }
 
     public void initNavigationDrawer() {
 
@@ -104,4 +97,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
+
+    private void logUser() {
+        // TODO: Use the current user's information
+        // You can call any combination of these three methods
+        Crashlytics.setUserIdentifier("12345");
+        Crashlytics.setUserEmail("user@fabric.io");
+        Crashlytics.setUserName("Test User");
+    }
 }
