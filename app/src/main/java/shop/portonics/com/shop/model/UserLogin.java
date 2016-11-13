@@ -20,10 +20,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.SignInButton;
-import com.google.android.gms.common.api.GoogleApiClient;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,53 +42,66 @@ public class UserLogin extends AppCompatActivity {
 
     EditText email, password;
     Button UserLogin;
+    LoginButton loginButton;
     String mMail, mPassword;
     TextView mRegisterActivity;
     AlertDialog.Builder mBuilder;
     RequestQueue mRequestQueue;
     private String Login_url = "http://localhost:8080/AndroidApi/UserLogin.php";
 
+    CallbackManager mCallbackManager;
+
+
     Register mRegister;
     RegisterActivity registerActivity;
-    private GoogleApiClient mGoogleApiClient;
     private TextView mStatusTextView;
     private ProgressDialog mProgressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FacebookSdk.sdkInitialize(this.getApplicationContext());
+        mCallbackManager = CallbackManager.Factory.create();
         setContentView(R.layout.activity_user_login);
+
+
+        //    AppEventsLogger.activateApp(this);
+
 
         mBuilder = new AlertDialog.Builder(this);
         mRegister = new Register();
 
         email = (EditText) findViewById(R.id.UserEmail);
         password = (EditText) findViewById(R.id.UserPass);
-
+        loginButton = (LoginButton) findViewById(R.id.fb_login_btn);
         UserLogin = (Button) findViewById(R.id.btnLogn);
         mRegisterActivity = (TextView) findViewById(R.id.mRegisterActivity);
 
         mRequestQueue = Volley.newRequestQueue(this);
 
+
         UserLogin userLogin = new UserLogin();
 
         userLogin.RegisterACtivity();
 
+        loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                final TextView textView = null;
+                textView.setText("Login Success" + loginResult.getAccessToken().getUserId() + "\n" + loginResult.getAccessToken().getToken());
+            }
 
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
+            @Override
+            public void onCancel() {
 
+            }
 
+            @Override
+            public void onError(FacebookException error) {
 
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this, (GoogleApiClient.OnConnectionFailedListener) this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
+            }
+        });
 
-
-        SignInButton signInButton = (SignInButton) findViewById(R.id.sign_in_button);
-        signInButton.setSize(SignInButton.SIZE_STANDARD);
-        signInButton.setScopes(gso.getScopeArray());
 
         mRegisterActivity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -182,6 +197,9 @@ public class UserLogin extends AppCompatActivity {
 
     }
 
-
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mCallbackManager.onActivityResult(requestCode, resultCode, data);
+    }
 }
