@@ -26,6 +26,11 @@ public class Product {
         Type = type;
     }
 
+    public Product() {
+        
+    }
+
+
     public int getProductID() {
         return ProductID;
     }
