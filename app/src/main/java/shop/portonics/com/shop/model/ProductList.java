@@ -73,7 +73,7 @@ public class ProductList extends AppCompatActivity {
 //                            int brand = response.getInt("brandID");
 //                            String body = response.getString("body");
 //                            double price = response.getDouble("price");
-//
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
