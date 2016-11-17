@@ -39,6 +39,12 @@
         android:layout_height="wrap_content"
         android:text="Login"/>
 
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/fb_login_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        
+    </com.facebook.login.widget.LoginButton>
 
     <TextView
         android:id="@+id/mRegisterActivity"
@@ -48,4 +54,6 @@
         android:text="Register"
         android:textAlignment="center"
         android:textSize="22sp"/>
+
+
 </LinearLayout>

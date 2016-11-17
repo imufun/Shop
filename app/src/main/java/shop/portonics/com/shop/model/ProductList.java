@@ -5,13 +5,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
@@ -33,14 +34,23 @@ public class ProductList extends AppCompatActivity {
 
     Product product;
 
+
+    TextView productId, productName, catID, brandID, body, price, type;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_list);
-
-
         mRequestQueue = Volley.newRequestQueue(this);
 
+        productId = (TextView) findViewById(R.id.productId);
+        productName = (TextView) findViewById(R.id.productName);
+        catID = (TextView) findViewById(R.id.CatId);
+        brandID = (TextView) findViewById(R.id.BrandName);
+        body = (TextView) findViewById(R.id.BodyText);
+        price = (TextView) findViewById(R.id.Price);
+        //image = (ImageView) itemView.findViewById(R.id.imageView);
+        type = (TextView) findViewById(R.id.Type);
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         productAdapter = new ProductAdapter(getApplicationContext(), productList);
@@ -51,40 +61,44 @@ public class ProductList extends AppCompatActivity {
         recyclerView.setAdapter(productAdapter);
 
 
+        product = new Product();
         ProductShow();
 
     }
 
     private void ProductShow() {
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest
+                (Request.Method.GET, product_url, null, new Response.Listener<JSONObject>() {
 
-
-// Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, product_url,
-                new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.d("TAG", "Response " + response);
-
+                        // mTxtDisplay.setText("Response: " + response.toString());
                         try {
 
-//                           int pro = response.getInt("productId");
-//                            String name = response.getString("productName");
-//                            int catId = response.getInt("catID");
-//                            int brand = response.getInt("brandID");
-//                            String body = response.getString("body");
-//                            double price = response.getDouble("price");
+
+                            product.setProductID(response.getInt("productId"));
+                            product.setProductName(response.getString("productName"));
+                            product.setCatId(response.getInt("catID"));
+                            product.setBrandId(response.getInt("brandID"));
+                            product.setBodyText(response.getString("body"));
+                            product.setPrice(response.getDouble("price"));
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+
                     }
                 }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
 
-                Log.d("Product", product_url);
-            }
-        });
-        AppController.getInstance().addToRequestQueue(stringRequest);
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+
+                    }
+                });
+
+        //Access the RequestQueue through your singleton class.
+        AppController.getInstance().addToRequestQueue(jsObjRequest);
     }
 }

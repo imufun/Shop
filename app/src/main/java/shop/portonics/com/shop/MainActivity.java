@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
 //        email.setText("Email" + bundle.getString("email"));
        // pass.setText("pass" + bundle.getString("password"));
+
     }
 
 
@@ -88,7 +89,11 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
+       // getActionBar().setDisplayHomeAsUpEnabled(true);
+        //getActionBar().setHomeButtonEnabled(true);
         actionBarDrawerToggle.syncState();
+
+
     }
 
 
