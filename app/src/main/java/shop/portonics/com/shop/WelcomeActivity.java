@@ -2,6 +2,7 @@ package shop.portonics.com.shop;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
@@ -11,6 +12,8 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -108,6 +111,7 @@ public class WelcomeActivity extends AppCompatActivity {
             dots[i].setText(Html.fromHtml("&#8226;"));
             dots[i].setTextSize(35);
             dots[i].setTextColor(colorInactive[currentPage]);
+            dotsLayout.addView(dots[i]);
         }
         if (dots.length > 0) {
             dots[currentPage].setTextColor(colorActive[currentPage]);
@@ -119,6 +123,11 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     public void changeStatusColor() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.TRANSPARENT);
+        }
 
     }
 
@@ -134,11 +143,11 @@ public class WelcomeActivity extends AppCompatActivity {
 
             addBottomDots(position);
             if (position == layouts.length - 1) {
-                btnNext.setText(getString(R.string.next));
+                btnNext.setText(getString(R.string.start));
                 btnSkip.setVisibility(View.GONE);
             } else {
                 btnNext.setText(getString(R.string.next));
-                btnSkip.setVisibility(View.GONE);
+                btnSkip.setVisibility(View.VISIBLE);
             }
         }
 
