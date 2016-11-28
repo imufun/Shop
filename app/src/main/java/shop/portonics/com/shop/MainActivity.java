@@ -2,6 +2,11 @@ package shop.portonics.com.shop;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,7 +18,15 @@ import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import io.fabric.sdk.android.Fabric;
+import shop.portonics.com.shop.fragment.Fivefragment;
+import shop.portonics.com.shop.fragment.Fouragment;
+import shop.portonics.com.shop.fragment.OneFragment;
+import shop.portonics.com.shop.fragment.ThreeFragment;
+import shop.portonics.com.shop.fragment.TwoFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,14 +34,17 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private Toolbar toolbar;
 
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Fabric.with(this, new Crashlytics());
         logUser();
         setContentView(R.layout.activity_main);
-       // toolbar = (Toolbar) findViewById(R.id.toolbar);
-       // setSupportActionBar(toolbar);
+        // toolbar = (Toolbar) findViewById(R.id.toolbar);
+        // setSupportActionBar(toolbar);
         initNavigationDrawer();
 
         email = (TextView) findViewById(R.id.IdEmail);
@@ -37,21 +53,65 @@ public class MainActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
 
 //        email.setText("Email" + bundle.getString("email"));
-       // pass.setText("pass" + bundle.getString("password"));
+        // pass.setText("pass" + bundle.getString("password"));
+
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        setupViewPager(viewPager);
+
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
 
     }
 
+    // Fragment Adapter
+    class ViewPagerAdapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
 
+        public ViewPagerAdapter(FragmentManager manager) {
+            super(manager);
+        }
 
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
+        }
+    }
+
+    private void setupViewPager(ViewPager viewPager) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new OneFragment(), "ONE");
+        adapter.addFragment(new TwoFragment(), "two");
+        adapter.addFragment(new ThreeFragment(), "three");
+        adapter.addFragment(new Fouragment(), "four");
+        adapter.addFragment(new Fivefragment(), "five");
+
+        viewPager.setAdapter(adapter);
+    }
+
+    //Navigation Drawer
     public void initNavigationDrawer() {
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
-
                 int id = menuItem.getItemId();
-
                 switch (id) {
                     case R.id.home:
                         Toast.makeText(getApplicationContext(), "Home", Toast.LENGTH_SHORT).show();
@@ -89,14 +149,12 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
-       // getActionBar().setDisplayHomeAsUpEnabled(true);
+        // getActionBar().setDisplayHomeAsUpEnabled(true);
         //getActionBar().setHomeButtonEnabled(true);
         actionBarDrawerToggle.syncState();
 
 
     }
-
-
 
 
     private void logUser() {
