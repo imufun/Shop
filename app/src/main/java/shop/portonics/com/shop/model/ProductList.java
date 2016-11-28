@@ -52,6 +52,7 @@ public class ProductList extends AppCompatActivity {
         //image = (ImageView) itemView.findViewById(R.id.imageView);
         type = (TextView) findViewById(R.id.Type);
 
+
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         productAdapter = new ProductAdapter(getApplicationContext(), productList);
         recyclerView = new RecyclerView(this);

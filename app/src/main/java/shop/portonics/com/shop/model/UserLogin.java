@@ -32,6 +32,7 @@ import shop.portonics.com.shop.MainActivity;
 import shop.portonics.com.shop.R;
 import shop.portonics.com.shop.utils.AppController;
 
+@SuppressWarnings("Convert2Diamond")
 public class UserLogin extends AppCompatActivity {
 
     EditText email, password;
@@ -122,9 +123,11 @@ public class UserLogin extends AppCompatActivity {
                             Toast.makeText(UserLogin.getContext(), "Error", Toast.LENGTH_LONG).show();
                         }
                     }) {
+                        @SuppressWarnings("Convert2Diamond")
                         @Override
                         protected Map<String, String> getParams() throws AuthFailureError {
-                            Map<String, String> params = new HashMap<String, String>();
+                            //noinspection Convert2Diamond,Convert2Diamond,Convert2Diamond
+                            @SuppressWarnings("Convert2Diamond") Map<String, String> params = new HashMap<String, String>();
                             params.put("email", mMail);
                             params.put("password", mPassword);
 
